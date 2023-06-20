@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.hashers import get_hasher
+from django.contrib.auth.hashers import make_password
 from django.core.management.base import BaseCommand, CommandError
 
 from faker import Faker
@@ -13,7 +13,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         fake = Faker()
-        hasher = get_hasher()
         User = get_user_model()
         User.objects.bulk_create(
             [
@@ -22,7 +21,7 @@ class Command(BaseCommand):
                     email=fake.email(),
                     first_name=fake.first_name(),
                     last_name=fake.last_name(),
-                    password=hasher.encode(password=fake.password(), salt=hasher.salt()),
+                    password=make_password(password=fake.password()),
                 )
                 for _ in range(options['user_qty'])
             ]
