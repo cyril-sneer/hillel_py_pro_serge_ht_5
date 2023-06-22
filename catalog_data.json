@@ -1,0 +1,260 @@
+[
+{
+    "model": "catalog.city",
+    "pk": 1,
+    "fields": {
+        "name": "Kyiv"
+    }
+},
+{
+    "model": "catalog.city",
+    "pk": 2,
+    "fields": {
+        "name": "Odessa"
+    }
+},
+{
+    "model": "catalog.city",
+    "pk": 3,
+    "fields": {
+        "name": "Lviv"
+    }
+},
+{
+    "model": "catalog.city",
+    "pk": 4,
+    "fields": {
+        "name": "Kharkiv"
+    }
+},
+{
+    "model": "catalog.city",
+    "pk": 5,
+    "fields": {
+        "name": "Lutsk"
+    }
+},
+{
+    "model": "catalog.productcategory",
+    "pk": 1,
+    "fields": {
+        "name": "ELEC"
+    }
+},
+{
+    "model": "catalog.productcategory",
+    "pk": 2,
+    "fields": {
+        "name": "CHEM"
+    }
+},
+{
+    "model": "catalog.productcategory",
+    "pk": 3,
+    "fields": {
+        "name": "COSM"
+    }
+},
+{
+    "model": "catalog.productcategory",
+    "pk": 4,
+    "fields": {
+        "name": "AUTO"
+    }
+},
+{
+    "model": "catalog.supplier",
+    "pk": 1,
+    "fields": {
+        "name": "Electronics, inc",
+        "specialization": 1,
+        "city": 1
+    }
+},
+{
+    "model": "catalog.supplier",
+    "pk": 2,
+    "fields": {
+        "name": "House chemistry, llc",
+        "specialization": 2,
+        "city": 2
+    }
+},
+{
+    "model": "catalog.supplier",
+    "pk": 3,
+    "fields": {
+        "name": "The best cosmetics, corp",
+        "specialization": 3,
+        "city": 4
+    }
+},
+{
+    "model": "catalog.supplier",
+    "pk": 4,
+    "fields": {
+        "name": "Auto form Lviv, inc",
+        "specialization": 4,
+        "city": 3
+    }
+},
+{
+    "model": "catalog.supplier",
+    "pk": 5,
+    "fields": {
+        "name": "Your Lutsk car, ltd",
+        "specialization": 4,
+        "city": 5
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Tablet",
+        "category": 1,
+        "supplier": 1,
+        "price": "100.00"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Mobile phone",
+        "category": 1,
+        "supplier": 1,
+        "price": "100.00"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "TV set",
+        "category": 1,
+        "supplier": 1,
+        "price": "250.00"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "Shampoo",
+        "category": 3,
+        "supplier": 3,
+        "price": "25.00"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+        "name": "Lipstick",
+        "category": 3,
+        "supplier": 3,
+        "price": "15.00"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+        "name": "Pouder",
+        "category": 3,
+        "supplier": 3,
+        "price": "10.00"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+        "name": "Cleaning cream",
+        "category": 2,
+        "supplier": 2,
+        "price": "12.00"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+        "name": "Audi",
+        "category": 4,
+        "supplier": 4,
+        "price": "30000.00"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 9,
+    "fields": {
+        "name": "BMW",
+        "category": 4,
+        "supplier": 4,
+        "price": "35000.00"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 10,
+    "fields": {
+        "name": "Renault",
+        "category": 4,
+        "supplier": 5,
+        "price": "15000.00"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 11,
+    "fields": {
+        "name": "Peugeot",
+        "category": 4,
+        "supplier": 5,
+        "price": "17000.00"
+    }
+},
+{
+    "model": "catalog.customer",
+    "pk": 1,
+    "fields": {
+        "first_name": "Sergey",
+        "last_name": "Sergeev",
+        "city": 4,
+        "goods": [
+            3,
+            4
+        ]
+    }
+},
+{
+    "model": "catalog.customer",
+    "pk": 2,
+    "fields": {
+        "first_name": "Alexander",
+        "last_name": "Alexandrov",
+        "city": 1,
+        "goods": [
+            8,
+            11
+        ]
+    }
+},
+{
+    "model": "catalog.customer",
+    "pk": 3,
+    "fields": {
+        "first_name": "Nikolay",
+        "last_name": "Nikolaev",
+        "city": 2,
+        "goods": [
+            2,
+            5,
+            7
+        ]
+    }
+}
+]

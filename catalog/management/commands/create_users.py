@@ -23,7 +23,7 @@ class Command(BaseCommand):
                     last_name=fake.last_name(),
                     password=make_password(password=fake.password()),
                 )
-                for _ in range(options['user_qty'])
+                for _ in range(options["user_qty"])
             ]
         )
         self.stdout.write(self.style.SUCCESS("Пользователи успешно созданы!"))

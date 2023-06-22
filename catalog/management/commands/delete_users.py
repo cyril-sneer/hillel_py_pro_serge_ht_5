@@ -6,12 +6,12 @@ class Command(BaseCommand):
     help = """Deletes several users by its ids."""
 
     def add_arguments(self, parser):
-        parser.add_argument("user_ids", nargs='+', type=int)
+        parser.add_argument("user_ids", nargs="+", type=int)
 
     def handle(self, *args, **options):
         User = get_user_model()
 
-        users_queryset = User.objects.filter(id__in=options['user_ids'])
+        users_queryset = User.objects.filter(id__in=options["user_ids"])
         if users_queryset.filter(is_superuser=True).exists():
             raise CommandError("Вы не можете удалить суперпользователя!")
         else:
