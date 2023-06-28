@@ -18,7 +18,8 @@
     {{ form.as_p }}
 
     {% if person %}
-        <input type="submit" value="Update">
+        <input type="submit" value="Update" name="Update_button">
+        <input type="submit" value="Delete" name="Delete_button">
     {% else %}
         <input type="submit" value="Create">
     {% endif %}

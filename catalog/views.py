@@ -50,7 +50,11 @@ def update_person(request, pk):
         form = PersonModelForm(request.POST, instance=person)
         if form.is_valid():
             person = form.save()
-            return redirect(person.get_absolute_url())
+            if 'Update_button' in request.POST:
+                return redirect(person.get_absolute_url())
+            elif 'Delete_button' in request.POST:
+                person.delete()
+                return redirect(reverse("catalog:person"))
 
     else:
         form = PersonModelForm(instance=person)
