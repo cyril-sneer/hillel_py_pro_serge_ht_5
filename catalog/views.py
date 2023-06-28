@@ -1,10 +1,11 @@
 from math import hypot
 
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
-from .forms import TriangleForm
+from .forms import TriangleForm, PersonModelForm
+from .models import Person
 
 
 # Create your views here.
@@ -28,3 +29,29 @@ def calc_hypotenuse(request, hyp_c=None):
         form = TriangleForm()
 
     return render(request, "catalog/input_triangle.html", {"form": form})
+
+
+def create_person(request):
+    if request.method == "POST":
+        form = PersonModelForm(request.POST)
+        if form.is_valid():
+            person = form.save()
+            return redirect(person.get_absolute_url())
+
+    else:
+        form = PersonModelForm()
+    return render(request, 'catalog/person_form.html', {'form': form})
+
+
+def update_person(request, pk):
+    person = get_object_or_404(Person, pk=pk)
+
+    if request.method == "POST":
+        form = PersonModelForm(request.POST, instance=person)
+        if form.is_valid():
+            person = form.save()
+            return redirect(person.get_absolute_url())
+
+    else:
+        form = PersonModelForm(instance=person)
+    return render(request, 'catalog/person_form.html', {'form': form, "person": person})

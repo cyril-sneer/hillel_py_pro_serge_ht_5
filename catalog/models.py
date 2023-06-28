@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 # Create your models here.
@@ -49,3 +50,18 @@ class Customer(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+
+class Person(models.Model):
+    first_name = models.CharField(max_length=20, null=False)
+    last_name = models.CharField(max_length=20, null=False)
+    email = models.EmailField(verbose_name='E-mail')
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def get_absolute_url(self):
+        """
+        Returns the url to access a particular person instance.
+        """
+        return reverse('catalog:person-detail', args=[str(self.id)])

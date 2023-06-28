@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Person</title>
+</head>
+<body>
+<form action="
+    {% if person %}
+      {% url "catalog:person-detail" person.id %}
+    {% else %}
+      {% url "catalog:person" %}
+    {% endif %}
+" method="post">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    {% if person %}
+        <input type="submit" value="Update">
+    {% else %}
+        <input type="submit" value="Create">
+    {% endif %}
+
+</form>
+</body>
+</html>
