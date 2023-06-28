@@ -5,6 +5,7 @@
     <title>Person</title>
 </head>
 <body>
+
 <form action="
     {% if person %}
       {% url "catalog:person-detail" person.id %}
@@ -25,5 +26,14 @@
     {% endif %}
 
 </form>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 </body>
 </html>

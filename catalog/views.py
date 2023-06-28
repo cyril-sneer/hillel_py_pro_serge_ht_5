@@ -1,5 +1,6 @@
 from math import hypot
 
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -51,9 +52,11 @@ def update_person(request, pk):
         if form.is_valid():
             person = form.save()
             if 'Update_button' in request.POST:
+                messages.success(request, "Person profile updated!")
                 return redirect(person.get_absolute_url())
             elif 'Delete_button' in request.POST:
                 person.delete()
+                messages.success(request, "Person profile DELETED!")
                 return redirect(reverse("catalog:person"))
 
     else:
