@@ -35,6 +35,7 @@ def calc_hypotenuse(request, hyp_c=None):
 def create_person(request):
     if request.method == "POST":
         form = PersonModelForm(request.POST)
+
         if form.is_valid():
             person = form.save()
             return redirect(person.get_absolute_url())
@@ -49,11 +50,14 @@ def update_person(request, pk):
 
     if request.method == "POST":
         form = PersonModelForm(request.POST, instance=person)
+
         if form.is_valid():
             person = form.save()
+
             if 'Update_button' in request.POST:
                 messages.success(request, "Person profile updated!")
                 return redirect(person.get_absolute_url())
+
             elif 'Delete_button' in request.POST:
                 person.delete()
                 messages.success(request, "Person profile DELETED!")
