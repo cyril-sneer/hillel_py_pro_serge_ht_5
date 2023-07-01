@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.db import models
 from django.urls import reverse
 
@@ -65,3 +66,44 @@ class Person(models.Model):
         Returns the url to access a particular person instance.
         """
         return reverse('catalog:person-detail', args=[str(self.id)])
+
+
+class LogModel(models.Model):
+    path = models.CharField(max_length=200)
+    METHODS_CHOICES = [
+        ("GET", "GET"),
+        ("POST", "POST"),
+    ]
+    method = models.CharField(max_length=4, choices=METHODS_CHOICES)
+    STATUS_CODES = [
+        (200, "OK"),
+        (301, "Moved Permanently"),
+        (302, "Found"),
+        (304, "Not Modified"),
+        (400, "Bad Request"),
+        (401, "Unauthorized"),
+        (403, "Forbidden"),
+        (404, "Not Found"),
+        (405, "Method Not Allowed"),
+        (406, "Not Acceptable"),
+        (500, "Internal Server Error"),
+        (501, "Not Implemented"),
+        (502, "Bad Gateway"),
+        (503, "Service Unavailable"),
+        (504, "Gateway Timeout"),
+    ]
+    status = models.SmallIntegerField(choices=STATUS_CODES)
+    query_get = models.JSONField(verbose_name="Query params")
+    body_post = models.JSONField(verbose_name="Body params")
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.path} * {self.method} * {self.status} * {self.timestamp}"
+
+    @admin.display(boolean=True, description="Query")
+    def has_query(self):
+        return bool(self.query_get)
+
+    @admin.display(boolean=True, description="Body")
+    def has_body(self):
+        return bool(self.body_post)
