@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>{{ store.name }}</h1>
+
+    <p><strong>Books:</strong> {{ num_books }}</p>
+    <p><strong>Average price: </strong>${{ avg_price }}</p>
+    <p><strong>Average pages: </strong>{{ avg_pages }}</p>
+    <p><strong>Authors:</strong> {{ num_authors }}</p>
+
+
+    <div style="margin-left:20px;margin-top:20px">
+        <h4>20 the most expansive books:</h4>
+        <ul>
+            {% for book in most_expansive %}
+                <li><a href="{% url 'bookshop:book-detail' book.pk %}">{{ book.name }} - ${{ book.price }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

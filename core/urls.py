@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -23,3 +25,21 @@ urlpatterns = [
 ]
 
 handler404 = "core.views.page_not_found_view"
+
+urlpatterns += [
+    path("__debug__/", include("debug_toolbar.urls")),
+]
+
+urlpatterns += [
+    path("bookshop/", include("bookshop.urls")),
+]
+
+# Add Django site authentication urls (for login, logout, password management)
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
+
+# Используйте static() чтобы добавить соотношения для статических файлов
+# Только на период разработки
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

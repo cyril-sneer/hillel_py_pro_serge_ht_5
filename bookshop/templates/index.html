@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <title>Index page</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Book Store Home</h1>
+
+    <p>Welcome to <em>Book Store</em> - Home task # 12 & 15 ))</p>
+    <hr>
+
+    <h2>The Stores has the following record counts:</h2>
+
+    <ul>
+        <li><strong>Stores:</strong> {{ num_stores }}</li>
+    </ul>
+    <br>
+    <ul>
+        <li><strong>Books:</strong> {{ num_books }}</li>
+        <li><strong>Max price: </strong>${{ max_price }}</li>
+        <li><strong>Average price: </strong>${{ avg_price }}</li>
+    </ul>
+    <br>
+    <ul>
+        <li><strong>Authors:</strong> {{ num_authors }}</li>
+        <li><strong>Average books per author: </strong> {{ avg_books_per_author }}</li>
+    </ul>
+    <br>
+    <ul>
+        <li><strong>Publishers: </strong> {{ num_publisher }}</li>
+        <li><strong>Average books per publisher: </strong> {{ avg_books_per_publisher }}</li>
+    </ul>
+    <hr>
+    <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+
+{% endblock %}
+
