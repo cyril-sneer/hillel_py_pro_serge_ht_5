@@ -1,7 +1,5 @@
 # Create your views here.
 
-import datetime
-
 from django.db.models import Avg, Max, Count, Sum
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -12,9 +10,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.auth.decorators import permission_required
 
 from .models import Store, Book, Author, Publisher
-
-
-# from .forms import RenewBookForm, RenewBookModelForm
 
 
 def index(request):
