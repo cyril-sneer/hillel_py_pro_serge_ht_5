@@ -1,6 +1,12 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+    {% if user.is_authenticated %}
+        <hr>
+        <a href="{% url 'bookshop:book_create' %}"><strong>CREATE NEW BOOK</strong></a>
+        <hr>
+    {% endif %}
+
     <h1>Book List</h1>
 
     {% if book_list %}

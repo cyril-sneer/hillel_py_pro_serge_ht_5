@@ -12,6 +12,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.auth.decorators import permission_required
 
 from .models import Store, Book, Author, Publisher
+
+
 # from .forms import RenewBookForm, RenewBookModelForm
 
 
@@ -33,8 +35,6 @@ def index(request):
     num_publisher = Publisher.objects.count()
     avg_books_per_publisher = \
         Publisher.objects.annotate(book_count=Count('book')).aggregate(Avg("book_count")).get("book_count__avg")
-
-
 
     # Number of visits to this view, as counted in the session variable.
     num_visits = request.session.get('num_visits', 0)
@@ -93,7 +93,6 @@ class PublisherDetailView(generic.DetailView):
         return context
 
 
-
 class StoreListView(generic.ListView):
     model = Store
     paginate_by = 10
@@ -121,3 +120,18 @@ class StoreDetailView(generic.DetailView):
         context["num_authors"] = num_authors
         context["most_expansive"] = most_expansive
         return context
+
+
+class BookCreate(LoginRequiredMixin, CreateView):
+    model = Book
+    fields = '__all__'
+
+
+class BookUpdate(LoginRequiredMixin, UpdateView):
+    model = Book
+    fields = '__all__'
+
+
+class BookDelete(LoginRequiredMixin, DeleteView):
+    model = Book
+    success_url = reverse_lazy('bookshop:books/')
